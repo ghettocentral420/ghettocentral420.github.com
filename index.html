@@ -86,7 +86,7 @@
 
 		#complete-delivery-text {
 			position: absolute;
-			top: 90.1%; /* Adjusted top position */
+			top: 89.8%; /* Adjusted top position */
 			font-size: 4.6vw; /* Same font size as delivery time */
 			font-weight: bold;
 			cursor: pointer; /* Add cursor pointer to indicate it's clickable */
@@ -150,10 +150,10 @@
     <div id="popup-container">
         <div id="popup-content">
             <input type="text" id="name-input" placeholder="Enter your name">
-            <input type="text" id="address-name-input" placeholder="Enter address name">
+            <input type="text" id="address-name-input" placeholder="Enter address name" value="Big Bill Hell's">
             <input type="text" id="restaurant-name-input" placeholder="Enter restaurant name">
-            <input type="text" id="street-line-1-input" placeholder="Enter street line 1">
-            <input type="text" id="street-line-2-input" placeholder="Enter street line 2">
+            <input type="text" id="street-line-1-input" placeholder="Enter street line 1" value="10307, Splendor Ridge Ave">
+            <input type="text" id="street-line-2-input" placeholder="Enter street line 2" value="Las Vegas, Nevada 89117">
             <button id="submit-button" onclick="submitText()">Submit</button>
         </div>
     </div>
@@ -218,10 +218,10 @@
         // Function to submit the edited text and hide the popup window
         function submitText() {
             const newName = document.getElementById('name-input').value;
-            const newAddressName = document.getElementById('address-name-input').value;
+            const newAddressName = document.getElementById('address-name-input').value || "Big Bill Hell's"; // Default value if blank
             const newRestaurantName = document.getElementById('restaurant-name-input').value;
-            const newStreetLine1 = document.getElementById('street-line-1-input').value;
-            const newStreetLine2 = document.getElementById('street-line-2-input').value;
+            const newStreetLine1 = document.getElementById('street-line-1-input').value || "10307, Splendor Ridge Ave"; // Default value if blank
+            const newStreetLine2 = document.getElementById('street-line-2-input').value || "Las Vegas, Nevada 89117"; // Default value if blank
             document.getElementById('name-text').innerText = newName;
             document.getElementById('address-name-text').innerText = newAddressName;
             document.getElementById('restaurant-name-text').innerText = newRestaurantName;
