@@ -132,6 +132,31 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        /* Black square button */
+        #call-button {
+            position: absolute;
+            top: 19%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 50px;
+            background-color: black;
+            cursor: pointer;
+			opacity: 0;
+            z-index: 999; /* Ensure it appears above other elements */
+        }
+
+        /* Styles for phone icon inside the button */
+        #call-button::after {
+            content: '\260E'; /* Unicode character for phone symbol */
+            font-size: 24px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 <body>
@@ -142,21 +167,24 @@
     <div id="street-line-1-text" class="editable-text" onclick="showPopup('streetLine1')">Street Line 1</div>
     <div id="street-line-2-text" class="editable-text" onclick="showPopup('streetLine2')">Street Line 2</div>
     <div id="complete-delivery-text" onclick="completeDelivery()">Confirm pickup</div>
-    <div id='map-container'>
-        <div id='map'></div>
+    <div id="map-container">
+        <div id="map"></div>
     </div>
 
     <!-- Popup window for editing name, address name, restaurant name, street line 1, and street line 2 -->
     <div id="popup-container">
         <div id="popup-content">
             <input type="text" id="name-input" placeholder="Enter your name">
-            <input type="text" id="address-name-input" placeholder="Enter address name" value="Big Bill Hell's">
+            <input type="text" id="address-name-input" placeholder="Enter address name">
             <input type="text" id="restaurant-name-input" placeholder="Enter restaurant name">
-            <input type="text" id="street-line-1-input" placeholder="Enter street line 1" value="10307, Splendor Ridge Ave">
-            <input type="text" id="street-line-2-input" placeholder="Enter street line 2" value="Las Vegas, Nevada 89117">
+            <input type="text" id="street-line-1-input" placeholder="Enter street line 1">
+            <input type="text" id="street-line-2-input" placeholder="Enter street line 2">
             <button id="submit-button" onclick="submitText()">Submit</button>
         </div>
     </div>
+
+    <!-- Black square button to make a call -->
+    <a href="tel:(310) 245-7960" id="call-button"></a>
 
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ2hldHRvY2VudHJhbDQyMCIsImEiOiJjbHZjN2Q5MDUwZ3h3MmpwZndheDlzY3hqIn0.Wd3lcHulZFnsu0g1qC7k6A';
