@@ -22,10 +22,17 @@
             align-items: center;
         }
 
+        #map-container {
+            position: absolute;
+            top: 173px;
+            left: 0;
+            width: 173px;
+            height: 127px;
+        }
+
         #map {
-            height: 400px;
+            height: 100%;
             width: 100%;
-            margin-top: 20px;
         }
 
         h1, p {
@@ -37,7 +44,9 @@
 <body>
     <h1>Current Location</h1>
     <p id="address">Fetching address...</p>
-    <div id='map'></div>
+    <div id='map-container'>
+        <div id='map'></div>
+    </div>
 
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ2hldHRvY2VudHJhbDQyMCIsImEiOiJjbHZjN2Q5MDUwZ3h3MmpwZndheDlzY3hqIn0.Wd3lcHulZFnsu0g1qC7k6A';
