@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenStreetMap Current Location</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Current Address:</h1>
+    <p id="address"></p>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            var map = L.map('map').setView([0, 0], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            function onLocationFound(e) {
+                var radius = e.accuracy / 2;
+                L.marker(e.latlng).addTo(map)
+                    .bindPopup("You are within " + radius + " meters from this point").openPopup();
+            }
+
+            function onLocationError(e) {
+                alert(e.message);
+            }
+
+            map.on('locationfound', onLocationFound);
+            map.on('locationerror', onLocationError);
+
+            map.locate({setView: true, maxZoom: 16});
+        }
+
+        function getAddress(lat, lon) {
+            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('address').textContent = data.display_name;
+                })
+                .catch(error => {
+                    console.error('Error fetching address:', error);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    getAddress(latitude, longitude);
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+
+            // Load Leaflet.js script dynamically
+            var leafletScript = document.createElement('script');
+            leafletScript.src = 'https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js';
+            leafletScript.onload = initMap;
+            document.head.appendChild(leafletScript);
+        });
+    </script>
+</body>
+</html>
