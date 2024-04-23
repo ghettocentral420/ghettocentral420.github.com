@@ -20,6 +20,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            color: black; /* Change text color to black */
+            font-family: Arial, sans-serif; /* Use Arial font */
         }
 
         #map-container {
@@ -36,21 +38,9 @@
         }
 
         h1, p {
-            color: white;
+            color: black; /* Change text color to black */
             text-align: center;
-        }
-
-        #fullscreen-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 9999;
+            font-weight: bold; /* Make text bold */
         }
     </style>
 </head>
@@ -60,8 +50,6 @@
     <div id='map-container'>
         <div id='map'></div>
     </div>
-
-    <button id="fullscreen-button">Enter Fullscreen</button>
 
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ2hldHRvY2VudHJhbDQyMCIsImEiOiJjbHZjN2Q5MDUwZ3h3MmpwZndheDlzY3hqIn0.Wd3lcHulZFnsu0g1qC7k6A';
@@ -104,19 +92,6 @@
             console.error('Error getting location:', error);
             document.getElementById('address').innerText = 'Error getting location';
         }
-
-        // Fullscreen button functionality
-        const fullscreenButton = document.getElementById('fullscreen-button');
-        fullscreenButton.addEventListener('click', () => {
-            const body = document.body;
-            if (body.requestFullscreen) {
-                body.requestFullscreen();
-            } else if (body.webkitRequestFullscreen) {
-                body.webkitRequestFullscreen();
-            } else if (body.msRequestFullscreen) {
-                body.msRequestFullscreen();
-            }
-        });
     </script>
 </body>
 </html>
