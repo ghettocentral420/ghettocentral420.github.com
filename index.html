@@ -12,7 +12,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background-image: url('IMG_8495.jpg');
+            background-image: url('IMG_8496.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: top center; /* Align the top of the image to the top of the screen */
@@ -55,13 +55,43 @@
 
         #name-text {
             top: 18.6%; /* Adjusted top position */
-            left: 5%; /* Left padding */
+            left: 5.55%; /* Left padding */
         }
 
         #address-name-text {
-            top: 26%; /* Adjusted top position */
+            top: 26.3%; /* Adjusted top position */
             left: 15%; /* Left padding */
         }
+
+        #restaurant-name-text {
+            top: 51%; /* Adjusted top position */
+            left: 15%; /* Left padding */
+        }
+
+        #street-line-1-text {
+            top: 28.5%; /* Adjusted top position */
+            left: 15%; /* Left padding */
+            font-size: 4vw; /* Same font size as delivery time */
+            color: #3b3b3b; /* Gray color */
+            font-weight: normal; /* Not bold */
+        }
+        
+        #street-line-2-text {
+            top: 30.8%; /* Adjusted top position */
+            left: 15%; /* Left padding */
+            font-size: 4vw; /* Same font size as delivery time */
+            color: #3b3b3b; /* Gray color */
+            font-weight: normal; /* Not bold */
+        }
+
+		#complete-delivery-text {
+			position: absolute;
+			top: 89.6%; /* Adjusted top position */
+			font-size: 4.6vw; /* Same font size as delivery time */
+			font-weight: bold;
+			cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+			color: white; /* Set text color to white */
+		}
 
         /* Styles for popup window */
         #popup-container {
@@ -84,7 +114,10 @@
         }
 
         #name-input,
-        #address-name-input {
+        #address-name-input,
+        #restaurant-name-input,
+        #street-line-1-input,
+        #street-line-2-input {
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -102,18 +135,25 @@
     </style>
 </head>
 <body>
-    <div id="delivery-time">Deliver by XX:XX</div>
+    <div id="delivery-time">Pick up by XX:XX</div>
     <div id="name-text" class="editable-text" onclick="showPopup('name')">Name</div>
     <div id="address-name-text" class="editable-text" onclick="showPopup('addressName')">Address Name</div>
+    <div id="restaurant-name-text" class="editable-text" onclick="showPopup('restaurantName')">Restaurant Name</div>
+    <div id="street-line-1-text" class="editable-text" onclick="showPopup('streetLine1')">Street Line 1</div>
+    <div id="street-line-2-text" class="editable-text" onclick="showPopup('streetLine2')">Street Line 2</div>
+    <div id="complete-delivery-text" onclick="completeDelivery()">Confirm pickup</div>
     <div id='map-container'>
         <div id='map'></div>
     </div>
 
-    <!-- Popup window for editing name and address name -->
+    <!-- Popup window for editing name, address name, restaurant name, street line 1, and street line 2 -->
     <div id="popup-container">
         <div id="popup-content">
             <input type="text" id="name-input" placeholder="Enter your name">
             <input type="text" id="address-name-input" placeholder="Enter address name">
+            <input type="text" id="restaurant-name-input" placeholder="Enter restaurant name">
+            <input type="text" id="street-line-1-input" placeholder="Enter street line 1">
+            <input type="text" id="street-line-2-input" placeholder="Enter street line 2">
             <button id="submit-button" onclick="submitText()">Submit</button>
         </div>
     </div>
@@ -131,7 +171,7 @@
         const deliveryTimeString = deliveryTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         // Display delivery time
-        document.getElementById('delivery-time').innerText = `Deliver by ${deliveryTimeString}`;
+        document.getElementById('delivery-time').innerText = `Pick up by ${deliveryTimeString}`;
 
         navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
             enableHighAccuracy: true
@@ -166,6 +206,12 @@
                 document.getElementById('name-input').value = document.getElementById('name-text').innerText;
             } else if (textType === 'addressName') {
                 document.getElementById('address-name-input').value = document.getElementById('address-name-text').innerText;
+            } else if (textType === 'restaurantName') {
+                document.getElementById('restaurant-name-input').value = document.getElementById('restaurant-name-text').innerText;
+            } else if (textType === 'streetLine1') {
+                document.getElementById('street-line-1-input').value = document.getElementById('street-line-1-text').innerText;
+            } else if (textType === 'streetLine2') {
+                document.getElementById('street-line-2-input').value = document.getElementById('street-line-2-text').innerText;
             }
         }
 
@@ -173,9 +219,21 @@
         function submitText() {
             const newName = document.getElementById('name-input').value;
             const newAddressName = document.getElementById('address-name-input').value;
+            const newRestaurantName = document.getElementById('restaurant-name-input').value;
+            const newStreetLine1 = document.getElementById('street-line-1-input').value;
+            const newStreetLine2 = document.getElementById('street-line-2-input').value;
             document.getElementById('name-text').innerText = newName;
             document.getElementById('address-name-text').innerText = newAddressName;
+            document.getElementById('restaurant-name-text').innerText = newRestaurantName;
+            document.getElementById('street-line-1-text').innerText = newStreetLine1;
+            document.getElementById('street-line-2-text').innerText = newStreetLine2;
             document.getElementById('popup-container').style.display = 'none';
+        }
+
+        // Function to handle completion of delivery
+        function completeDelivery() {
+            // Add your code to handle delivery completion here
+            alert('Delivery completed!');
         }
     </script>
 </body>
