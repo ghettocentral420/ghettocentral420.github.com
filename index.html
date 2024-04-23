@@ -37,9 +37,17 @@
             height: 100%;
             width: 100%;
         }
+
+        #delivery-time {
+            position: absolute;
+            top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <div id="delivery-time"></div>
     <div id='map-container'>
         <div id='map'></div>
     </div>
@@ -47,6 +55,18 @@
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ2hldHRvY2VudHJhbDQyMCIsImEiOiJjbHZjN2Q5MDUwZ3h3MmpwZndheDlzY3hqIn0.Wd3lcHulZFnsu0g1qC7k6A';
         
+        // Get current time
+        const currentTime = new Date();
+        
+        // Add 23 minutes to current time for delivery time
+        const deliveryTime = new Date(currentTime.getTime() + (23 * 60000));
+
+        // Format delivery time
+        const deliveryTimeString = deliveryTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        // Display delivery time
+        document.getElementById('delivery-time').innerText = `Deliver by ${deliveryTimeString}`;
+
         navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
             enableHighAccuracy: true
         });
