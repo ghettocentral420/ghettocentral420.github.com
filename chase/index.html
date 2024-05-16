@@ -9,12 +9,13 @@
 <body>
     <div class="container">
         <div class="header">
+            <button class="back-button">&lt;</button>
             <h1>TOTAL CHECKING (...7794)</h1>
         </div>
         <div class="balance-details">
-            <div class="balance">
+            <div class="balance" onclick="openBalancePopup()">
                 <div class="balance-info">
-                    <div class="balance-amount">$640.62</div>
+                    <div class="balance-amount" id="main-balance">$640.62</div>
                     <div class="balance-label">Available balance</div>
                 </div>
             </div>
@@ -23,13 +24,13 @@
                 <div class="details">
                     <div class="label">Available balance</div>
                     <div class="amount">
-                        $640.62 <img src="question-icon.png" alt="Question" class="question-icon">
+                        <span id="available-balance">$640.62</span> <img src="question-icon.png" alt="Question" class="question-icon">
                     </div>
                 </div>
                 <div class="details">
                     <div class="label">Present balance</div>
                     <div class="amount">
-                        $640.62 <img src="question-icon.png" alt="Question" class="question-icon">
+                        <span id="present-balance">$640.62</span> <img src="question-icon.png" alt="Question" class="question-icon">
                     </div>
                 </div>
             </div>
@@ -58,11 +59,17 @@
             </div>
         </div>
         <div class="manage-account">
-            <h2>Manage account</h2>
+            <div class="manage-account-header">
+                <h2>Manage account</h2>
+                <span class="chevron">&gt;</span>
+            </div>
             <p>Access tools & services for your account</p>
         </div>
         <div class="transactions">
-            <h2>See all transactions</h2>
+            <div class="transactions-header">
+                <h2>See all transactions</h2>
+                <span class="chevron">&gt;</span>
+            </div>
             <div id="transaction-list">
                 <div class="transaction">
                     <div class="transaction-details">
@@ -89,8 +96,19 @@
                 <label for="transaction-name">Transaction Name:</label>
                 <input type="text" id="transaction-name" name="transaction-name" required>
                 <label for="transaction-amount">Amount:</label>
-                <input type="number" id="transaction-amount" name="transaction-amount" required>
+                <input type="number" id="transaction-amount" name="transaction-amount" step="0.01" required>
                 <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div id="balance-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeBalancePopup()">&times;</span>
+            <h2>Update Balance</h2>
+            <form id="balance-form">
+                <label for="new-balance">New Balance:</label>
+                <input type="number" id="new-balance" name="new-balance" step="0.01" required>
+                <button type="submit">Update</button>
             </form>
         </div>
     </div>
