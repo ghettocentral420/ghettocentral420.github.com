@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Banking App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TOTAL CHECKING (...7794)</h1>
+        </div>
+        <div class="balance-details">
+            <div class="balance">
+                <div class="balance-info">
+                    <div class="balance-amount">$640.62</div>
+                    <div class="balance-label">Available balance</div>
+                </div>
+            </div>
+            <div class="account-details">
+                <h2>Account details</h2>
+                <div class="details">
+                    <div class="label">Available balance</div>
+                    <div class="amount">
+                        $640.62 <img src="question-icon.png" alt="Question" class="question-icon">
+                    </div>
+                </div>
+                <div class="details">
+                    <div class="label">Present balance</div>
+                    <div class="amount">
+                        $640.62 <img src="question-icon.png" alt="Question" class="question-icon">
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown-wrapper">
+                <button class="dropdown-button">Show details &#9662;</button>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="action">
+                <button class="icon-button" onclick="openPopup()">
+                    <img src="pay-icon.png" alt="Pay">
+                </button>
+                <div class="button-label">Pay</div>
+            </div>
+            <div class="action">
+                <button class="icon-button">
+                    <img src="transfer-icon.png" alt="Transfer">
+                </button>
+                <div class="button-label">Transfer</div>
+            </div>
+            <div class="action">
+                <button class="icon-button">
+                    <img src="more-icon.png" alt="More">
+                </button>
+                <div class="button-label">More</div>
+            </div>
+        </div>
+        <div class="manage-account">
+            <h2>Manage account</h2>
+            <p>Access tools & services for your account</p>
+        </div>
+        <div class="transactions">
+            <h2>See all transactions</h2>
+            <div id="transaction-list">
+                <div class="transaction">
+                    <div class="transaction-details">
+                        <div class="description">POS DEBIT APPLE.COM/BILL 866-712-7753 CA</div>
+                        <div class="status">Pending</div>
+                    </div>
+                    <div class="amount negative">-$19.99</div>
+                </div>
+                <div class="transaction">
+                    <div class="transaction-details">
+                        <div class="description">POS DEBIT 322 PIZZA BAR LAS VEGAS NV</div>
+                        <div class="status">Pending</div>
+                    </div>
+                    <div class="amount negative">-$4.67</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Add Transaction</h2>
+            <form id="transaction-form">
+                <label for="transaction-name">Transaction Name:</label>
+                <input type="text" id="transaction-name" name="transaction-name" required>
+                <label for="transaction-amount">Amount:</label>
+                <input type="number" id="transaction-amount" name="transaction-amount" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
