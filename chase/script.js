@@ -1,92 +1,310 @@
-function openPopup() {
-    document.getElementById('popup').style.display = 'block';
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
 }
 
-function closePopup() {
-    document.getElementById('popup').style.display = 'none';
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
 }
 
-function openBalancePopup() {
-    document.getElementById('balance-popup').style.display = 'block';
+.header {
+    padding: 10px;
+    position: relative;
 }
 
-function closeBalancePopup() {
-    document.getElementById('balance-popup').style.display = 'none';
+.back-button {
+    position: absolute;
+    left: 10px;
+    top: 0px;  /* Adjusted from 10px to 5px */
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
-document.getElementById('transaction-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const transactionName = document.getElementById('transaction-name').value;
-    const transactionAmount = parseFloat(document.getElementById('transaction-amount').value);
-    
-    addTransaction(transactionName, transactionAmount);
-    
-    closePopup();
-});
-
-document.getElementById('balance-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    let newBalance = parseFloat(document.getElementById('new-balance').value).toFixed(2);
-    newBalance = formatNumberWithCommas(newBalance);
-    
-    document.getElementById('main-balance').textContent = `$${newBalance}`;
-    document.getElementById('available-balance').textContent = `$${newBalance}`;
-    document.getElementById('present-balance').textContent = `$${newBalance}`;
-    
-    closeBalancePopup();
-});
-
-function addTransaction(name, amount) {
-    const transactionList = document.getElementById('transaction-list');
-    
-    const newTransaction = document.createElement('div');
-    newTransaction.classList.add('transaction');
-    
-    const transactionDetails = document.createElement('div');
-    transactionDetails.classList.add('transaction-details');
-    
-    const description = document.createElement('div');
-    description.classList.add('description');
-    description.textContent = name;
-    
-    const status = document.createElement('div');
-    status.classList.add('status');
-    status.textContent = 'Pending';
-    
-    transactionDetails.appendChild(description);
-    transactionDetails.appendChild(status);
-    
-    const amountDiv = document.createElement('div');
-    amountDiv.classList.add('amount');
-    if (amount < 0) {
-        amountDiv.textContent = `-$${Math.abs(amount).toFixed(2)}`;
-        amountDiv.classList.add('negative');
-    } else {
-        amountDiv.textContent = `$${amount.toFixed(2)}`;
-    }
-    
-    newTransaction.appendChild(transactionDetails);
-    newTransaction.appendChild(amountDiv);
-    
-    newTransaction.addEventListener('click', function() {
-        transactionList.removeChild(newTransaction);
-    });
-    
-    transactionList.insertBefore(newTransaction, transactionList.firstChild);
+.header h1 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
 }
 
-// Add event listeners to existing transactions
-document.querySelectorAll('.transaction').forEach(transaction => {
-    transaction.addEventListener('click', function() {
-        const transactionList = document.getElementById('transaction-list');
-        transactionList.removeChild(transaction);
-    });
-});
+.balance-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+}
 
-function formatNumberWithCommas(number) {
-    const parts = number.split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
+.balance {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.balance-info {
+    text-align: right;
+}
+
+.balance-amount {
+    font-size: 2em;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.balance-label {
+    font-size: 0.9em;
+    color: gray;
+}
+
+.account-details {
+    margin-bottom: 20px;
+}
+
+.account-details h2 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.details .label {
+    font-size: 0.9em;
+    color: gray;
+    display: flex;
+    align-items: center;
+}
+
+.details .amount {
+    font-size: 0.9em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.question-icon {
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+}
+
+.dropdown-wrapper {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+}
+
+.dropdown-button {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    color: #007bff;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.action {
+    text-align: center;
+}
+
+.icon-button {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.icon-button img {
+    width: 30px;
+    height: 30px;
+}
+
+.button-label {
+    font-size: 0.9em;
+    color: #007bff;
+}
+
+.manage-account {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.manage-account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.manage-account h2 {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.manage-account p {
+    color: gray;
+    font-size: 0.9em;
+    margin: 5px 0 0 0;
+}
+
+.chevron {
+    font-size: 1.2em;
+    color: gray;
+}
+
+.transactions {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transactions h2 {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.transactions p {
+    color: gray;
+    font-size: 0.9em;
+    margin: 5px 0 0 0;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+}
+
+.transaction:hover {
+    background-color: #f1f1f1;
+}
+
+.transaction:last-child {
+    border-bottom: none;
+}
+
+.transaction-details {
+    max-width: 70%;
+}
+
+.description {
+    font-size: 0.9em;
+}
+
+.status {
+    font-size: 0.8em;
+    color: gray;
+}
+
+.amount {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.amount.negative {
+    color: red;
+}
+
+/* Popup styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+    margin: 50px auto;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+#transaction-form, #balance-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#transaction-form label, #balance-form label {
+    margin-top: 10px;
+}
+
+#transaction-form input, #balance-form input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#transaction-form button, #balance-form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
