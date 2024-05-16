@@ -13,12 +13,23 @@ body {
 
 .header {
     padding: 10px;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    left: 10px;
+    top: 0px;  /* Adjusted from 10px to 5px */
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
 .header h1 {
     font-size: 1.2em;
     margin-bottom: 5px;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
 }
 
@@ -36,6 +47,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .balance-info {
@@ -44,7 +56,7 @@ body {
 
 .balance-amount {
     font-size: 2em;
-    font-weight: normal;  /* Change this line to make the big numbers less bold */
+    font-weight: normal;
     margin-bottom: 5px;
 }
 
@@ -123,7 +135,7 @@ body {
 }
 
 .icon-button {
-    background-color: white; /* White background */
+    background-color: white;
     border: 1px solid #ddd;
     border-radius: 50%;
     width: 60px;
@@ -143,7 +155,7 @@ body {
 
 .button-label {
     font-size: 0.9em;
-    color: #007bff; /* Blue text */
+    color: #007bff;
 }
 
 .manage-account {
@@ -152,6 +164,13 @@ body {
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.manage-account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .manage-account h2 {
@@ -165,17 +184,34 @@ body {
     margin: 5px 0 0 0;
 }
 
+.chevron {
+    font-size: 1.2em;
+    color: gray;
+}
+
 .transactions {
     padding: 10px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .transactions h2 {
     font-size: 1.1em;
     margin: 0;
-    margin-bottom: 10px;
+}
+
+.transactions p {
+    color: gray;
+    font-size: 0.9em;
+    margin: 5px 0 0 0;
 }
 
 .transaction {
@@ -183,11 +219,11 @@ body {
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #e9ecef;
-    cursor: pointer;  /* Make transactions appear clickable */
+    cursor: pointer;
 }
 
 .transaction:hover {
-    background-color: #f1f1f1;  /* Add hover effect for better UX */
+    background-color: #f1f1f1;
 }
 
 .transaction:last-child {
@@ -247,23 +283,23 @@ body {
     cursor: pointer;
 }
 
-#transaction-form {
+#transaction-form, #balance-form {
     display: flex;
     flex-direction: column;
 }
 
-#transaction-form label {
+#transaction-form label, #balance-form label {
     margin-top: 10px;
 }
 
-#transaction-form input {
+#transaction-form input, #balance-form input {
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-#transaction-form button {
+#transaction-form button, #balance-form button {
     margin-top: 20px;
     padding: 10px;
     background-color: #007bff;
