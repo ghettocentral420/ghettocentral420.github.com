@@ -6,6 +6,14 @@ function closePopup() {
     document.getElementById('popup').style.display = 'none';
 }
 
+function openBalancePopup() {
+    document.getElementById('balance-popup').style.display = 'block';
+}
+
+function closeBalancePopup() {
+    document.getElementById('balance-popup').style.display = 'none';
+}
+
 document.getElementById('transaction-form').addEventListener('submit', function(event) {
     event.preventDefault();
     
@@ -15,6 +23,19 @@ document.getElementById('transaction-form').addEventListener('submit', function(
     addTransaction(transactionName, transactionAmount);
     
     closePopup();
+});
+
+document.getElementById('balance-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    let newBalance = parseFloat(document.getElementById('new-balance').value).toFixed(2);
+    newBalance = formatNumberWithCommas(newBalance);
+    
+    document.getElementById('main-balance').textContent = `$${newBalance}`;
+    document.getElementById('available-balance').textContent = `$${newBalance}`;
+    document.getElementById('present-balance').textContent = `$${newBalance}`;
+    
+    closeBalancePopup();
 });
 
 function addTransaction(name, amount) {
@@ -63,3 +84,9 @@ document.querySelectorAll('.transaction').forEach(transaction => {
         transactionList.removeChild(transaction);
     });
 });
+
+function formatNumberWithCommas(number) {
+    const parts = number.split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
