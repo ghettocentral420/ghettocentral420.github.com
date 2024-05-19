@@ -103,9 +103,16 @@
     </div>
     <div id="transactions-popup" class="popup full-screen">
         <div class="popup-content full-screen-content">
-            <span class="close" onclick="closeTransactionsPopup()">&times;</span>
-            <div class="transactions-header">
+            <div class="all-transaction-list-header">
+                <button class="close" onclick="closeTransactionsPopup()">&lt;</button>
                 <h2>TOTAL CHECKING (...7794)</h2>
+                <img src="profile-picture.png" alt="Profile Picture" class="profile-picture">
+            </div>
+            <div class="fake-search-bar">
+                <img src="magnifying-glass.png" alt="Search Icon" class="search-icon">
+                <span class="search-text">Search or filter</span>
+            </div>
+            <div id="divider">
             </div>
             <div id="all-transactions-list">
                 <!-- This will be populated dynamically using JavaScript -->
