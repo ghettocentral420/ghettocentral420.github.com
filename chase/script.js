@@ -190,7 +190,7 @@ function generateRandomTransactions(count) {
     for (let i = 0; i < count; i++) {
         const merchant = merchants[Math.floor(Math.random() * merchants.length)];
         const location = locations[Math.floor(Math.random() * locations.length)];
-        const amount = parseFloat((Math.random() * 100).toFixed(2)) * -1;
+        const amount = parseFloat((Math.random() * 95 + 5).toFixed(2)) * -1;
         const status = statuses[Math.floor(Math.random() * statuses.length)];
         const date = formatDate(new Date(currentDate.getTime() - i * 24 * 60 * 60 * 1000));
         transactions.push({
