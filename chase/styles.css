@@ -432,4 +432,7 @@ background-color: #0056a3;
     background: linear-gradient(to right, #016abb, #003473); /* Gradient background */
     z-index: 10;
 }
+.no-scroll {
+    overflow: hidden;
+}
 
