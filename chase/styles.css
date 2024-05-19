@@ -28,7 +28,7 @@ body {
     border: none;
     font-size: 1.5em;
     cursor: pointer;
-    margin-top: -33px;
+    margin-top: -23px;
 }
 
 .balance-details {
@@ -331,8 +331,8 @@ body {
 .popup-content {
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+  /*  padding: 20px; */
+/*	border: 1px solid #888; */
     width: 80%;
     max-width: 300px;
     border-radius: 10px;
@@ -343,7 +343,7 @@ body {
     width: 100%;
     margin: auto;
     height: 100%;
-    max-width: 400px; /* Match the main menu width */
+    max-width: 450px; /* Match the main menu width */
     border-radius: 0;
     box-shadow: none;
     overflow-y: auto;
