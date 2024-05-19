@@ -12,25 +12,23 @@ body {
 }
 
 .header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     padding: 10px;
-    position: relative;
+}
+
+.header h1 {
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 .back-button {
-    position: absolute;
-    left: 10px;
-    top: -20px;  /* Adjusted from 10px to 5px */
     background: none;
     border: none;
     font-size: 1.5em;
     cursor: pointer;
-}
-
-.header h1 {
-    font-size: 1.7em;
-    margin-bottom: 5px;
-    text-align: left;
-    font-weight: bold;
+    margin-top: -33px;
 }
 
 .balance-details {
@@ -56,7 +54,7 @@ body {
 
 .balance-amount {
     font-size: 2em;
-    font-weight: normal;
+    font-weight: 1;
     margin-bottom: 5px;
 }
 
@@ -135,7 +133,7 @@ body {
 }
 
 .icon-button {
-    background-color: white;
+    background-color: white; /* White background */
     border: 1px solid #ddd;
     border-radius: 50%;
     width: 60px;
@@ -155,7 +153,7 @@ body {
 
 .button-label {
     font-size: 0.9em;
-    color: #007bff;
+    color: #007bff; /* Blue text */
 }
 
 .manage-account {
@@ -164,7 +162,6 @@ body {
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    position: relative;
 }
 
 .manage-account-header {
@@ -178,15 +175,15 @@ body {
     margin: 0;
 }
 
+.chevron {
+    font-size: 1.2em;
+    color: gray;
+}
+
 .manage-account p {
     color: gray;
     font-size: 0.9em;
     margin: 5px 0 0 0;
-}
-
-.chevron {
-    font-size: 1.2em;
-    color: gray;
 }
 
 .transactions {
@@ -194,24 +191,19 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    position: relative;
 }
 
 .transactions-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .transactions h2 {
     font-size: 1.1em;
     margin: 0;
-}
-
-.transactions p {
-    color: gray;
-    font-size: 0.9em;
-    margin: 5px 0 0 0;
+    margin-bottom: 10px;
 }
 
 .transaction {
@@ -219,11 +211,6 @@ body {
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #e9ecef;
-    cursor: pointer;
-}
-
-.transaction:hover {
-    background-color: #f1f1f1;
 }
 
 .transaction:last-child {
@@ -250,61 +237,101 @@ body {
 
 .amount.negative {
     color: red;
+    font-family: arial;
+    font-weight: 90;
 }
 
-/* Popup styles */
+.date-header {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: gray;
+    background-color: #f0f0f0; /* Gray background */
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #e9ecef;
+}
+
 .popup {
     display: none;
     position: fixed;
-    top: 0;
+    z-index: 1;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .popup-content {
-    background-color: white;
+    background-color: #fefefe;
+    margin: 15% auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #888;
     width: 80%;
-    max-width: 400px;
-    margin: 50px auto;
-    position: relative;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.popup-content.full-screen-content {
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    max-width: 400px; /* Match the main menu width */
+    border-radius: 0;
+    box-shadow: none;
+    overflow-y: auto;
+    padding: 10px;
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 1.5em;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
     cursor: pointer;
 }
 
-#transaction-form, #balance-form {
+.popup h2 {
+    margin: 0 0 15px 0;
+}
+
+.popup form {
     display: flex;
     flex-direction: column;
 }
 
-#transaction-form label, #balance-form label {
-    margin-top: 10px;
+.popup label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
 }
 
-#transaction-form input, #balance-form input {
+.popup input {
+    margin-bottom: 15px;
     padding: 10px;
-    margin-top: 5px;
+    font-size: 0.9em;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-#transaction-form button, #balance-form button {
-    margin-top: 20px;
+.popup button {
     padding: 10px;
-    background-color: #007bff;
-    color: white;
+    font-size: 1em;
     border: none;
     border-radius: 5px;
+    background-color: #007bff;
+    color: white;
     cursor: pointer;
+}
+
+.popup button:hover {
+    background-color: #0056b3;
 }
