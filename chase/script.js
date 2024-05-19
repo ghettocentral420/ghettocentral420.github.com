@@ -180,10 +180,10 @@ function createTransactionElement(transaction) {
     const amountDiv = document.createElement('div');
     amountDiv.classList.add('amount');
     if (transaction.amount < 0) {
-        amountDiv.textContent = `-$${Math.abs(transaction.amount).toFixed(2)}`;
+        amountDiv.textContent = `-$${formatNumberWithCommas(Math.abs(transaction.amount).toFixed(2))}`;
         amountDiv.classList.add('negative');
     } else {
-        amountDiv.textContent = `$${transaction.amount.toFixed(2)}`;
+        amountDiv.textContent = `$${formatNumberWithCommas(transaction.amount.toFixed(2))}`;
     }
     
     newTransaction.appendChild(transactionDetails);
