@@ -36,10 +36,13 @@ function openTransactionsPopup() {
     const allTransactionsList = document.getElementById('all-transactions-list');
     allTransactionsList.innerHTML = ''; // Clear previous content
 
+    // Count pending transactions
+    const pendingTransactionsCount = transactions.filter(transaction => transaction.status === 'Pending').length;
+
     // Add "Pending" header
     const pendingHeader = document.createElement('div');
     pendingHeader.classList.add('date-header');
-    pendingHeader.textContent = 'Pending';
+    pendingHeader.textContent = `Pending (${pendingTransactionsCount})`;
     allTransactionsList.appendChild(pendingHeader);
 
     // Add pending transactions
@@ -116,6 +119,9 @@ function addTransaction(name, amount, status, date) {
         transactionList.appendChild(createTransactionElement(transaction));
     });
     
+    // Count pending transactions
+    const pendingTransactionsCount = transactions.filter(transaction => transaction.status === 'Pending').length;
+    
     // Update the full transaction list
     allTransactionsList.innerHTML = '';
     let lastDate = null;
@@ -124,7 +130,7 @@ function addTransaction(name, amount, status, date) {
     // Add "Pending" header
     const pendingHeader = document.createElement('div');
     pendingHeader.classList.add('date-header');
-    pendingHeader.textContent = 'Pending';
+    pendingHeader.textContent = `Pending (${pendingTransactionsCount})`;
     allTransactionsList.appendChild(pendingHeader);
 
     // Add pending transactions
@@ -244,4 +250,3 @@ function generateRandomTransactions(count) {
     
     return transactions;
 }
-
