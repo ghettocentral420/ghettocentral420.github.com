@@ -111,13 +111,14 @@ body {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 20px;
-    color: #007bff;
+    color: #015fb9;
     padding: 5px 20px;
     cursor: pointer;
     font-size: 0.9em;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
+    right: 20px;
 }
 
 .actions {
@@ -153,7 +154,7 @@ body {
 
 .button-label {
     font-size: 0.9em;
-    color: #007bff; /* Blue text */
+    color: #015fb9; /* Blue text */
 }
 
 .manage-account {
@@ -236,7 +237,7 @@ body {
 }
 
 .amount.negative {
-    color: red;
+    color: #bc0f17;
     font-family: arial;
     font-weight: 90;
 }
@@ -245,11 +246,67 @@ body {
     font-size: 0.9em;
     font-weight: bold;
     color: gray;
-    background-color: #f0f0f0; /* Gray background */
-    padding: 5px;
-    margin-top: 10px;
+    background-color: #f6f7f9; /* Gray background */
+    padding: 10px;
+    margin-top: 0px;
     margin-bottom: 5px;
     border-bottom: 1px solid #e9ecef;
+    margin: 0 -10px;  
+}
+
+.all-transaction-list-header {
+    display: flex;
+    align-items: center;
+    background-color: #f6f7f9;
+    padding: 0 10px;
+}
+
+.all-transaction-list-header h2 {
+    font-size: 14px; /* Make the h2 smaller */
+    text-align: center; /* Center the h2 */
+    flex: 1; /* Allow h2 to take available space */
+    padding-top: 15px;
+}
+
+.all-transaction-list-header .close {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 0;
+    color: gray;
+    outline: none; /* Remove the outline */
+}
+
+.all-transaction-list-header .close:hover,
+.all-transaction-list-header .close:focus {
+    color: gray; /* Maintain gray color on hover and focus */
+    background: none; /* No background on hover and focus */
+}
+
+.all-transaction-list-header .profile-picture {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px; /* Add some margin to the left of the profile picture */
+}
+
+.fake-search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white; 
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.fake-search-bar .search-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px; /* Add some margin to the right of the search icon */
+}
+
+.fake-search-bar .search-text {
+    color: #015fb9; /* Blue text color */
+    font-size: 0.9em;
 }
 
 .popup {
@@ -283,7 +340,7 @@ body {
     border-radius: 0;
     box-shadow: none;
     overflow-y: auto;
-    padding: 10px;
+    padding: 0px;
 }
 
 .close {
@@ -327,11 +384,20 @@ body {
     font-size: 1em;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #015fb9;
     color: white;
     cursor: pointer;
 }
 
 .popup button:hover {
     background-color: #0056b3;
+}
+#all-transactions-list {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#divider {
+width: 100%;
+height: 6px;
+background-color: #0056a3;
 }
