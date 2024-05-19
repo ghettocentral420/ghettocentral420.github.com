@@ -97,6 +97,7 @@ body {
     width: 14px;
     height: 14px;
     margin-left: 5px;
+	
 }
 
 .dropdown-wrapper {
@@ -210,8 +211,10 @@ body {
 .transaction {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start; /* Align items to the top */
     padding: 10px 0;
     border-bottom: 1px solid #e9ecef;
+    position: relative; /* Position relative for absolute positioning of amount */
 }
 
 .transaction:last-child {
@@ -223,17 +226,21 @@ body {
 }
 
 .description {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .status {
     font-size: 0.8em;
     color: gray;
+	padding-top: 10px;
 }
 
 .amount {
     font-size: 1em;
     font-weight: bold;
+    position: absolute;
+    bottom: 10px; /* Position at the bottom */
+    right: 10px;  /* Position at the right */
 }
 
 .amount.negative {
@@ -401,3 +408,28 @@ width: 100%;
 height: 6px;
 background-color: #0056a3;
 }
+.small-balance-amount {
+    font-size: 0.9em;
+    font-weight: bold;
+	font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.all-transactions-top {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    background-color: white; /* Ensure background color matches the rest of the page */
+    z-index: 10; /* Ensure it stays above other content */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: add a slight shadow for separation */
+}
+.sticky-bottom-div {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    bottom: 0;
+    height: 35px;
+    width: 100%;
+    background: linear-gradient(to right, #016abb, #003473); /* Gradient background */
+    z-index: 10;
+}
+

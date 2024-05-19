@@ -1,10 +1,12 @@
 let editEnabled = true;
 let transactions = generateRandomTransactions(50);
+let initialBalance = parseFloat(document.getElementById('main-balance').textContent.replace(/[^0-9.-]+/g, ""));
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Display the top 3 transactions in the main transaction list
+    // Display the top 3 pending transactions in the main transaction list
     const transactionList = document.getElementById('transaction-list');
-    transactions.slice(0, 3).forEach(transaction => {
+    const pendingTransactions = transactions.filter(transaction => transaction.status === 'Pending').slice(0, 3);
+    pendingTransactions.forEach(transaction => {
         transactionList.appendChild(createTransactionElement(transaction));
     });
 });
@@ -33,19 +35,32 @@ function openTransactionsPopup() {
     // Populate all-transactions-list with all transactions
     const allTransactionsList = document.getElementById('all-transactions-list');
     allTransactionsList.innerHTML = ''; // Clear previous content
+
+    // Add "Pending" header
+    const pendingHeader = document.createElement('div');
+    pendingHeader.classList.add('date-header');
+    pendingHeader.textContent = 'Pending';
+    allTransactionsList.appendChild(pendingHeader);
+
+    // Add pending transactions
+    transactions.filter(transaction => transaction.status === 'Pending').forEach(transaction => {
+        allTransactionsList.appendChild(createTransactionElement(transaction));
+    });
+
+    // Add date headers and non-pending transactions
     let lastDate = null;
-    let transactionsCountSinceLastDateHeader = 0;
-    transactions.forEach(transaction => {
-        if (transactionsCountSinceLastDateHeader === 0 || transactionsCountSinceLastDateHeader > Math.floor(Math.random() * 10) + 1) {
+    let runningBalance = initialBalance;
+    transactions.filter(transaction => transaction.status === 'Posted').forEach(transaction => {
+        if (transaction.date !== lastDate) {
             lastDate = transaction.date;
             const dateHeader = document.createElement('div');
             dateHeader.classList.add('date-header');
             dateHeader.textContent = lastDate;
             allTransactionsList.appendChild(dateHeader);
-            transactionsCountSinceLastDateHeader = 0;
         }
+        runningBalance -= transaction.amount;
+        transaction.runningBalance = runningBalance.toFixed(2); // Update the transaction object with the running balance
         allTransactionsList.appendChild(createTransactionElement(transaction));
-        transactionsCountSinceLastDateHeader++;
     });
 
     document.getElementById('transactions-popup').style.display = 'block';
@@ -94,29 +109,43 @@ function addTransaction(name, amount, status, date) {
     
     transactions.unshift({name, amount, status, date}); // Add to the beginning of the transactions array
     
-    // Update the main transaction list (top 3)
+    // Update the main transaction list (top 3 pending transactions)
+    const pendingTransactions = transactions.filter(transaction => transaction.status === 'Pending').slice(0, 3);
     transactionList.innerHTML = '';
-    transactions.slice(0, 3).forEach(transaction => {
+    pendingTransactions.forEach(transaction => {
         transactionList.appendChild(createTransactionElement(transaction));
     });
     
     // Update the full transaction list
     allTransactionsList.innerHTML = '';
     let lastDate = null;
-    let transactionsCountSinceLastDateHeader = 0;
-    transactions.forEach(transaction => {
-        if (transactionsCountSinceLastDateHeader === 0 || transactionsCountSinceLastDateHeader > Math.floor(Math.random() * 10) + 1) {
+    let runningBalance = initialBalance;
+
+    // Add "Pending" header
+    const pendingHeader = document.createElement('div');
+    pendingHeader.classList.add('date-header');
+    pendingHeader.textContent = 'Pending';
+    allTransactionsList.appendChild(pendingHeader);
+
+    // Add pending transactions
+    transactions.filter(transaction => transaction.status === 'Pending').forEach(transaction => {
+        allTransactionsList.appendChild(createTransactionElement(transaction));
+    });
+
+    // Add date headers and non-pending transactions
+    transactions.filter(transaction => transaction.status === 'Posted').forEach(transaction => {
+        if (transaction.date !== lastDate) {
             lastDate = transaction.date;
             const dateHeader = document.createElement('div');
             dateHeader.classList.add('date-header');
             dateHeader.textContent = lastDate;
             allTransactionsList.appendChild(dateHeader);
-            transactionsCountSinceLastDateHeader = 0;
         }
+        runningBalance -= transaction.amount;
+        transaction.runningBalance = runningBalance.toFixed(2); // Update the transaction object with the running balance
         allTransactionsList.appendChild(createTransactionElement(transaction));
-        transactionsCountSinceLastDateHeader++;
     });
-    
+
     newTransaction.addEventListener('click', function() {
         if (editEnabled) {
             transactionList.removeChild(newTransaction);
@@ -137,7 +166,7 @@ function createTransactionElement(transaction) {
     
     const status = document.createElement('div');
     status.classList.add('status');
-    status.textContent = transaction.status;
+    status.textContent = transaction.status === 'Posted' ? `$${transaction.runningBalance}` : transaction.status;
     
     transactionDetails.appendChild(description);
     transactionDetails.appendChild(status);
@@ -181,17 +210,29 @@ function formatDate(date) {
 
 function generateRandomTransactions(count) {
     const transactions = [];
-    const merchants = ["TARGET T-3575", "SMOKE MART", "PIZZA BAR", "DEATON LAWFIRM", "STEWIE'S", "MCDONALD'S", "LITTLE DARLINGS", "THE CLAM", "MORTY'S", "GOON WITH THE SPOON", "SUBWAY 3464", "ANTWON'S", ];
+    const merchants = ["TARGET T-3575", "SMOKE MART", "PIZZA BAR", "DEATON LAWFIRM", "STEWIE'S", "MCDONALD'S", "LITTLE DARLINGS", "THE CLAM", "MORTY'S", "GOON WITH THE SPOON", "SUBWAY 3464", "ANTWON'S"];
     const locations = ["LAS VEGAS NV", "SUMMERLIN NV", "PHOENIX AZ", "LAS VEGAS", "LAS VEGAS NV", "LAS VEGAS NV"];
     const statuses = ["Pending", "Posted"];
     
     let currentDate = new Date();
+    let pendingCount = 0;
     
     for (let i = 0; i < count; i++) {
         const merchant = merchants[Math.floor(Math.random() * merchants.length)];
         const location = locations[Math.floor(Math.random() * locations.length)];
         const amount = parseFloat((Math.random() * 95 + 5).toFixed(2)) * -1;
-        const status = statuses[Math.floor(Math.random() * statuses.length)];
+        let status;
+        
+        // Ensure no more than 3 pending transactions
+        if (pendingCount >= 3) {
+            status = "Posted";
+        } else {
+            status = statuses[Math.floor(Math.random() * statuses.length)];
+            if (status === "Pending") {
+                pendingCount++;
+            }
+        }
+        
         const date = formatDate(new Date(currentDate.getTime() - i * 24 * 60 * 60 * 1000));
         transactions.push({
             name: `POS DEBIT ${merchant} ${location}`,
@@ -203,3 +244,4 @@ function generateRandomTransactions(count) {
     
     return transactions;
 }
+

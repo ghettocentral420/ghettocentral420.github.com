@@ -23,13 +23,13 @@
                 <h2>Account details</h2>
                 <div class="details">
                     <div class="label">Available balance</div>
-                    <div class="amount">
+                    <div class="small-balance-amount">
                         <span id="available-balance">$7356.51</span> <img src="question-icon.png" alt="Question" class="question-icon">
                     </div>
                 </div>
                 <div class="details">
                     <div class="label">Present balance</div>
-                    <div class="amount">
+                    <div class="small-balance-amount">
                         <span id="present-balance">$7356.51</span> <img src="question-icon.png" alt="Question" class="question-icon">
                     </div>
                 </div>
@@ -103,6 +103,7 @@
     </div>
     <div id="transactions-popup" class="popup full-screen">
         <div class="popup-content full-screen-content">
+		<div class="all-transactions-top">
             <div class="all-transaction-list-header">
                 <button class="close" onclick="closeTransactionsPopup()">&lt;</button>
                 <h2>TOTAL CHECKING (...7794)</h2>
@@ -114,9 +115,11 @@
             </div>
             <div id="divider">
             </div>
+		</div>
             <div id="all-transactions-list">
                 <!-- This will be populated dynamically using JavaScript -->
             </div>
+			<div class="sticky-bottom-div"></div>
         </div>
     </div>
     <script src="script.js"></script>
