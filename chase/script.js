@@ -34,15 +34,18 @@ function openTransactionsPopup() {
     const allTransactionsList = document.getElementById('all-transactions-list');
     allTransactionsList.innerHTML = ''; // Clear previous content
     let lastDate = null;
+    let transactionsCountSinceLastDateHeader = 0;
     transactions.forEach(transaction => {
-        if (transaction.date !== lastDate) {
+        if (transactionsCountSinceLastDateHeader === 0 || transactionsCountSinceLastDateHeader > Math.floor(Math.random() * 10) + 1) {
             lastDate = transaction.date;
             const dateHeader = document.createElement('div');
             dateHeader.classList.add('date-header');
             dateHeader.textContent = lastDate;
             allTransactionsList.appendChild(dateHeader);
+            transactionsCountSinceLastDateHeader = 0;
         }
         allTransactionsList.appendChild(createTransactionElement(transaction));
+        transactionsCountSinceLastDateHeader++;
     });
 
     document.getElementById('transactions-popup').style.display = 'block';
@@ -58,7 +61,7 @@ document.getElementById('transaction-form').addEventListener('submit', function(
     const transactionName = document.getElementById('transaction-name').value;
     let transactionAmount = parseFloat(document.getElementById('transaction-amount').value);
     const transactionStatus = document.getElementById('transaction-status').checked ? 'Pending' : 'Posted';
-    const transactionDate = new Date().toLocaleDateString(); // Use current date
+    const transactionDate = formatDate(new Date()); // Use current date
     
     // Ensure the transaction amount is negative
     if (transactionAmount > 0) {
@@ -100,15 +103,18 @@ function addTransaction(name, amount, status, date) {
     // Update the full transaction list
     allTransactionsList.innerHTML = '';
     let lastDate = null;
+    let transactionsCountSinceLastDateHeader = 0;
     transactions.forEach(transaction => {
-        if (transaction.date !== lastDate) {
+        if (transactionsCountSinceLastDateHeader === 0 || transactionsCountSinceLastDateHeader > Math.floor(Math.random() * 10) + 1) {
             lastDate = transaction.date;
             const dateHeader = document.createElement('div');
             dateHeader.classList.add('date-header');
             dateHeader.textContent = lastDate;
             allTransactionsList.appendChild(dateHeader);
+            transactionsCountSinceLastDateHeader = 0;
         }
         allTransactionsList.appendChild(createTransactionElement(transaction));
+        transactionsCountSinceLastDateHeader++;
     });
     
     newTransaction.addEventListener('click', function() {
@@ -168,18 +174,25 @@ function toggleEdit() {
     }
 }
 
+function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+}
+
 function generateRandomTransactions(count) {
     const transactions = [];
-    const merchants = ["TARGET", "SMOKE MART", "PIZZA BAR", "APPLE.COM/BILL"];
-    const locations = ["LAS VEGAS NV", "NEW YORK NY", "SAN FRANCISCO CA", "CHICAGO IL"];
+    const merchants = ["TARGET T-3575", "SMOKE MART", "PIZZA BAR", "DEATON LAWFIRM", "STEWIE'S", "MCDONALD'S", "LITTLE DARLINGS", "THE CLAM", "MORTY'S", "GOON WITH THE SPOON", "SUBWAY 3464", "ANTWON'S", ];
+    const locations = ["LAS VEGAS NV", "SUMMERLIN NV", "PHOENIX AZ", "LAS VEGAS", "LAS VEGAS NV", "LAS VEGAS NV"];
     const statuses = ["Pending", "Posted"];
+    
+    let currentDate = new Date();
     
     for (let i = 0; i < count; i++) {
         const merchant = merchants[Math.floor(Math.random() * merchants.length)];
         const location = locations[Math.floor(Math.random() * locations.length)];
         const amount = parseFloat((Math.random() * 100).toFixed(2)) * -1;
         const status = statuses[Math.floor(Math.random() * statuses.length)];
-        const date = new Date(Date.now() - Math.random() * 10000000000).toLocaleDateString();
+        const date = formatDate(new Date(currentDate.getTime() - i * 24 * 60 * 60 * 1000));
         transactions.push({
             name: `POS DEBIT ${merchant} ${location}`,
             amount: amount,
