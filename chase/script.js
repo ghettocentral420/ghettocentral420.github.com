@@ -67,10 +67,12 @@ function openTransactionsPopup() {
     });
 
     document.getElementById('transactions-popup').style.display = 'block';
+    document.body.classList.add('no-scroll'); // Disable scrolling on the body
 }
 
 function closeTransactionsPopup() {
     document.getElementById('transactions-popup').style.display = 'none';
+    document.body.classList.remove('no-scroll'); // Enable scrolling on the body
 }
 
 document.getElementById('transaction-form').addEventListener('submit', function(event) {
