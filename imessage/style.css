@@ -1,0 +1,73 @@
+body {
+	background-color: grey;	
+	margin: 0px;
+}
+#top {
+	backdrop-filter: blur(25px);
+	background-color: rgba(19,19,19, .4);
+	width: 100%;
+	height: 100px;
+	margin-top: -15px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 2;
+	position: fixed;
+}
+#contactName {
+	font-family: arial;
+	font-size: 11px;
+	color: white;
+	margin: auto;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	width: max-content;
+	transform: translate(-50%, 0);
+}
+#contactPhoto {
+	width: 40px;
+	position: absolute;
+	left: 50%;
+	border-radius: 100px;
+	bottom: 30px;
+	transform: translate(-50%, 0);
+}
+.incoming {
+	background-color: #28282a;
+	border-radius: 16px;
+	padding: 8px 10px 8px 10px;
+	width: max-content;
+	font-family: arial;
+	font-size: 15;
+	color: #f2f2f4;
+	top: 0px;
+	z-index: 1;
+	margin: 15px;
+	max-width: 250px;
+}
+.outgoing {
+	background-color: #248cff;
+	border-radius: 16px;
+	padding: 8px 10px 8px 10px;
+	width: max-content;
+	font-family: arial;
+	font-size: 15;
+	color: #f2f2f4;
+	top: 0px;
+	z-index: 1;
+	margin: 15px;
+	float: right;
+	max-width: 280px;
+}
+#imessage {
+	background-color: black;
+	width: 393px;
+	height: 793px;
+	margin: auto;
+}
+#contact {
+	background-color: red;
+	width: max-content;
+	z-index: 4;
+	margin: auto;
+}
