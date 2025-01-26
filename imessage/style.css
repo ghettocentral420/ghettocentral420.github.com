@@ -1,5 +1,5 @@
 body {
-	background-color: grey;	
+	background-color: black;	
 	margin: 0px;
 }
 #top {
@@ -12,6 +12,7 @@ body {
 	margin-right: auto;
 	z-index: 2;
 	position: fixed;
+	text-align: center;
 }
 #contactName {
 	font-family: arial;
@@ -59,6 +60,7 @@ body {
 	float: right;
 	max-width: 660;
 }
+
 #imessage {
 	background-color: black;
 	width: 100%;
@@ -71,10 +73,50 @@ body {
 	z-index: 4;
 	margin: auto;
 }
-#bottom {
+.bottom {
 	z-index: 7;
 	font-size: 500px;
 	position: fixed;
+	bottom: 100px;
+	display:inline-block;
+}
+#plus {
+	background-color: #28282a;
+	border-radius: 44px;
+	font-family: arial;
+	font-size: 42;
+	color: #9b9c9e;
+	z-index: 1;
+	font-size: 70;
+	font-family: arial;
+	width: 65px;
+	height: 75px;
+	padding-left:20px;
+	margin-left: 42px;
+}
+textarea {
+	font-size: 38px;
+	font-family: arial;
+	background-color: black;
+	color: #9b9c9e;
+	border-radius: 44px;
+	padding: 12px 30px;
+	border: solid;
+	border-color: #28282a;
+	border-width: 3px;
+	display: inline-table;
+	box-sizing: border-box;
+	height: 75px;
+	width: 800px;
+	margin-left: 140px;
+}
+#mic {
+	z-index: 1;
+	width: 50px;
+	height: 50px;
 	bottom: 10px;
-	color: red;
+	filter: invert(50%) opacity(40%);
+	float: right;
+	position: relative;
+	left: 880px;
 }
