@@ -6,13 +6,14 @@ body {
 	backdrop-filter: contrast(150%) blur(45px) brightness(130%);
 	background-color: rgba(19,19,19, .7);
 	width: 100%;
-	height: 300px;
+	height: 410px;
 	margin-top: -15px;
 	margin-left: auto;
 	margin-right: auto;
 	z-index: 2;
 	position: fixed;
 	text-align: center;
+	top: -200px;
 }
 #contactName {
 	font-family: arial;
