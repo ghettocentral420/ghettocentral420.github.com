@@ -1,0 +1,37 @@
+#EXTM3U url-tvg="http://m3u4u.com/epg/dqr6ywdpgmsmk6denx1w"
+#EXTINF:-1 tvg-id="ComedyCentral.us" tvg-name="Comedy Central" tvg-logo="" group-title="Entertainment",Comedy Central
+http://fl3.moveonjoy.com/Comedy_Central/index.m3u8
+#EXTINF:-1 tvg-id="WABC.us" tvg-name="ABC" tvg-logo="" group-title="Local",ABC
+https://xyzdddd.mizhls.ru/lb/premium766/index.m3u8
+#EXTINF:-1 tvg-id="WCBS.us" tvg-name="CBS" tvg-logo="" group-title="Local",CBS
+https://xyzdddd.mizhls.ru/lb/premium767/index.m3u8
+#EXTINF:-1 tvg-id="WDCW.us" tvg-name="CW" tvg-logo="" group-title="Local",CW
+https://streamer1.nexgen.bz/WPIX/index.m3u8
+#EXTINF:-1 tvg-id="FOX(WNYW)NewYorkNY(src01).us" tvg-name="FOX" tvg-logo="" group-title="Local",FOX
+https://xyzdddd.mizhls.ru/lb/premium768/index.m3u8
+#EXTINF:-1 tvg-id="WNBC.us" tvg-name="NBC" tvg-logo="" group-title="Local",NBC
+http://185.150.191.249/NYNewYorkNBCWNBC/index.m3u8
+#EXTINF:-1 tvg-id="(no tvg-id)" tvg-name="PBS" tvg-logo="" group-title="Local",PBS
+https://pbs.lls.cdn.pbs.org/est/index.m3u8
+#EXTINF:-1 tvg-id="(no tvg-id)" tvg-name="BBC World News" tvg-logo="" group-title="News",BBC World News
+http://fl2.moveonjoy.com/BBC_WORLD_NEWS/index.m3u8
+#EXTINF:-1 tvg-id="Bloomberg.us" tvg-name="Bloomberg" tvg-logo="" group-title="News",Bloomberg
+http://fl2.moveonjoy.com/BLOOMBERG/index.m3u8
+#EXTINF:-1 tvg-id="CNBC.us" tvg-name="CNBC" tvg-logo="" group-title="News",CNBC
+http://fl2.moveonjoy.com/CNBC/index.m3u8
+#EXTINF:-1 tvg-id="CNN.us" tvg-name="CNN" tvg-logo="" group-title="News",CNN
+https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_0_3564000.m3u8
+#EXTINF:-1 tvg-id="CSPAN.us" tvg-name="C-SPAN" tvg-logo="" group-title="News",C-SPAN
+http://fl2.moveonjoy.com/C-SPAN/index.m3u8
+#EXTINF:-1 tvg-id="FoxBusiness.us" tvg-name="FOX BUSINESS" tvg-logo="" group-title="News",FOX BUSINESS
+http://fl2.moveonjoy.com/FOX_Business_Network/index.m3u8
+#EXTINF:-1 tvg-id="FOX(WNYW)NewYorkNY(src01).us" tvg-name="Fox News" tvg-logo="" group-title="News",Fox News
+https://xyzdddd.mizhls.ru/lb/premium347/index.m3u8%22
+#EXTINF:-1 tvg-id="MSNBC.us" tvg-name="MSNBC" tvg-logo="" group-title="News",MSNBC
+http://41.205.93.154/MSNBC/index.m3u8
+#EXTINF:-1 tvg-id="NewsmaxTV.us" tvg-name="NewsMax" tvg-logo="" group-title="News",NewsMax
+https://nmx1ota.akamaized.net/hls/live/2107010/Live_1/index.m3u8
+#EXTINF:-1 tvg-id="NewsNation.us" tvg-name="NewsNation" tvg-logo="" group-title="News",NewsNation
+http://fl2.moveonjoy.com/NEWS_NATION/index.m3u8
+#EXTINF:-1 tvg-id="TheWeatherChannel.us" tvg-name="The Weather Channel" tvg-logo="" group-title="News",The Weather Channel
+http://fl2.moveonjoy.com/THE_WEATHER_CHANNEL/index.m3u8
