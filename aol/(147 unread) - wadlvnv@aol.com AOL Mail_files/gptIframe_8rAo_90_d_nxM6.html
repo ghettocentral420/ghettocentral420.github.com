@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="dns-prefetch" href="https://securepubads.g.doubleclick.net/"><link rel="preconnect" href="https://securepubads.g.doubleclick.net/"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com/"><link rel="preconnect" href="https://pagead2.googlesyndication.com/"><link rel="dns-prefetch" href="https://w5wjwktz45j6wm9qp.ay.delivery/"><link rel="preconnect" href="https://w5wjwktz45j6wm9qp.ay.delivery/"><link rel="dns-prefetch" href="https://assets.aol.com/"><link rel="preconnect" href="https://assets.aol.com/"><link rel="dns-prefetch" href="https://pbs.aol.com/"><link rel="preconnect" href="https://pbs.aol.com/"><link rel="dns-prefetch" href="https://s.yimg.com/"><link rel="preconnect" href="https://s.yimg.com/">
+    <link rel="dns-prefetch" href="https://apuid.aol.com/">
+    <link rel="preconnect" href="https://apuid.aol.com/" crossorigin="">
+    <script nonce="">
+      window.ymailAssetHost = "https://gpt.mail.aol.com/";
+      window.ymailNonce = "VRObas2JZGl4ElHhzhf3YQ==";
+      // OPUS.js reads this flag to decide the UPS sync host for the gam=
+      // and tbla= axids: true → ups.analytics.aol.com (uses the eSID in
+      // the A3 cookie on the aol.com domain), false/absent →
+      // ups.analytics.yahoo.com (uses the A3 cookie on the yahoo.com
+      // domain, that does not contain the eSID). Setting it to match the
+      // top-level bootstrap (opusBootstrap.ts) makes both writers to the
+      // shared .aol.com axids cookie converge on the same value, so the
+      // gam= and tbla= sub-values no longer flip between browser contexts.
+      window.opusSyncTblaOnAol = true;
+    </script>
+    <script nonce="" src="gptIframe_8rAo_90_d_data/iabConsentBridge_8rAo_90_d_nxM6.js"></script>
+    <script nonce="">
+      (function() {
+        var apuidUrl = "https://apuid.aol.com/v1/apuid/cookie";
+        var settled = false;
+
+        function deleteApuidCookie() {
+          document.cookie = "apuid=; Max-Age=0; path=/; domain=.aol.com";
+          document.cookie = "apuid=; Max-Age=0; path=/";
+        }
+
+        function triggerFetch() {
+          if (settled) return;
+          settled = true;
+          try {
+            fetch(apuidUrl, { credentials: "include" }).catch(function() {});
+          } catch (e) {}
+        }
+
+        function hasPurpose1Consent(tcData) {
+          if (tcData.purpose && tcData.purpose.consents && typeof tcData.purpose.consents[1] === "boolean") {
+            return tcData.purpose.consents[1];
+          }
+          if (tcData.tcString) {
+            try {
+              var core = tcData.tcString.split(".")[0];
+              var std = core.replace(/-/g, "+").replace(/_/g, "/");
+              while (std.length % 4) std += "=";
+              var binary = atob(std);
+              if (binary.length >= 20) {
+                return (binary.charCodeAt(19) & 0x80) !== 0;
+              }
+            } catch (e) {}
+          }
+          return false;
+        }
+
+        function handleTcData(tcData, success) {
+          if (!success || !tcData) return;
+          if (tcData.gdprApplies === false) {
+            triggerFetch();
+            return;
+          }
+          if (tcData.gdprApplies === true) {
+            if (hasPurpose1Consent(tcData)) {
+              triggerFetch();
+            } else {
+              settled = true;
+              deleteApuidCookie();
+            }
+          }
+        }
+
+        if (typeof window.__tcfapi === "function") {
+          window.__tcfapi("addEventListener", 2, handleTcData);
+        } else if (typeof window.__gpp === "function") {
+          window.__gpp("addEventListener", function(evt, success) {
+            if (!success || !evt || !evt.pingData) return;
+            var ping = evt.pingData;
+            var sids = ping.applicableSections || [];
+            var isGdpr = sids.indexOf(2) !== -1;
+            if (!isGdpr) {
+              triggerFetch();
+            }
+          });
+        }
+      })();
+    </script>
+    <link rel="preload" as="script" href="https://assets.aol.com/ay/client-v2.js">
+    <script nonce="" src="gptIframe_8rAo_90_d_data/benji-2_8rAo_90_d_nxM6.js"></script>
+    <script nonce="" defer="defer" src="gptIframe_8rAo_90_d_data/gptSandbox_8rAo_90_d_nxM6.js"></script>
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; display: flex; flex-direction: column; }
+      #Slot300_250_2-collapse { margin: 0; }
+      #Slot300_250_2 { margin-top: 18px; }
+      #Slot300_250_3 { position: absolute; top: 536px; }
+    </style>
+  <script type="text/javascript" src="gptIframe_8rAo_90_d_data/googletagservices_gpt_8rAo_90_d_nxM6.js" id="gpt-tag" class="benji-asset"></script><script type="text/javascript" src="gptIframe_8rAo_90_d_data/noop_8rAo_90_d_nxM6.js" id="ay-script" class="benji-asset" async=""></script></head>
+  <body data-new-gr-c-s-loaded="8.937.0">
+    <div id="gpt-passback"></div>
+  
+<div id="Slot160_600"></div><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></body></html>
